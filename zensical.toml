@@ -1,0 +1,57 @@
+[project]
+site_name = "tqdm.sh"
+site_url = "https://docs.tqdm.sh/"
+site_description = "Install tqctl and manage your tqdm.sh labs from the terminal."
+copyright = "tqdm.sh"
+extra_css = ["stylesheets/extra.css"]
+nav = [
+  {"Overview" = "index.md"},
+  {"Get started" = [{"Install tqctl" = "installation.md"}, {"Quickstart" = "quickstart.md"}]},
+  {"Guides" = [{"Sign in" = "authentication.md"}, {"Work with labs" = "labs.md"}, {"Connect to a machine" = "connections.md"}]},
+  {"Reference" = [{"Commands" = "commands.md"}, {"Downloads" = "downloads.md"}, {"Troubleshooting" = "troubleshooting.md"}]},
+]
+
+[project.theme]
+variant = "modern"
+font = false
+favicon = "assets/brand/favicon.svg"
+custom_dir = "overrides"
+features = ["navigation.sections", "navigation.expand", "navigation.footer", "content.code.copy", "search.highlight"]
+
+[project.theme.icon]
+logo = "tqdm/chevron"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme)"
+primary = "custom"
+accent = "custom"
+toggle.icon = "lucide/sun-moon"
+toggle.name = "Switch to light mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+primary = "custom"
+accent = "custom"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+primary = "custom"
+accent = "custom"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to system preference"
+
+[project.markdown_extensions.pymdownx.highlight]
+anchor_linenums = true
+
+[project.markdown_extensions.pymdownx.superfences]
+
+[project.markdown_extensions.pymdownx.tabbed]
+alternate_style = true
+
+[project.markdown_extensions.admonition]
+
+[project.markdown_extensions.attr_list]
