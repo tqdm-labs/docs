@@ -6,7 +6,7 @@ copyright = "tqdm.sh"
 extra_css = ["stylesheets/extra.css"]
 nav = [
   {"Overview" = "index.md"},
-  {"Get started" = [{"Install tqctl" = "installation.md"}, {"Quickstart" = "quickstart.md"}]},
+  {"Getting started" = [{"Install tqctl" = "installation.md"}, {"Quickstart" = "quickstart.md"}]},
   {"Guides" = [{"Sign in" = "authentication.md"}, {"Work with labs" = "labs.md"}, {"Connect to a machine" = "connections.md"}, {"Author a lab" = "authoring.md"}]},
   {"Reference" = [{"Commands" = "commands.md"}, {"Downloads" = "downloads.md"}, {"Troubleshooting" = "troubleshooting.md"}]},
 ]
@@ -16,7 +16,7 @@ variant = "modern"
 font = false
 favicon = "assets/brand/favicon.svg"
 custom_dir = "overrides"
-features = ["navigation.sections", "navigation.expand", "navigation.footer", "content.code.copy", "search.highlight"]
+features = ["navigation.footer", "content.code.copy", "search.highlight"]
 
 [project.theme.icon]
 logo = "tqdm/chevron"

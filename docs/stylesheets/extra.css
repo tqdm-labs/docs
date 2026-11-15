@@ -96,6 +96,12 @@
 .connection-steps strong { display: block; margin-bottom: .35rem; color: var(--docs-heading); font-size: .85rem; }
 .connection-steps li > span:last-child { display: block; color: var(--docs-muted); font-size: .72rem; line-height: 1.6; }
 .md-typeset .tabbed-labels { background: var(--docs-surface); }
+/* a tab block is one rounded card; the active tab is marked by a short bar under its middle */
+.md-typeset .tabbed-set { border: 1px solid var(--docs-rule); border-radius: 8px; overflow: hidden; }
+.md-typeset .tabbed-content { padding: 0 .8rem; }
+.js .md-typeset .tabbed-labels::before { width: 2.4rem; height: 2px; border-radius: 1px; background: var(--docs-heading); transform: translateX(calc(var(--md-indicator-x) + var(--md-indicator-width) / 2 - 1.2rem)); }
+.md-typeset .tabbed-labels > label + label { position: relative; }
+.md-typeset .tabbed-labels > label + label::before { content: ""; position: absolute; left: 0; top: 30%; bottom: 30%; width: 1px; background: var(--docs-rule); }
 @media (max-width: 59.984375em) {
   .docs-footer { max-width: none; }
 }
