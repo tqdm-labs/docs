@@ -36,6 +36,7 @@ Launch a published lab from the tqdm.sh web interface, then use the CLI to conne
 | Sign in or switch organisation | [Your account](authentication.md) |
 | Inspect sessions and run task checks | [Work with labs](labs.md) |
 | Open SSH or forward an application port | [Connect to a machine](connections.md) |
+| Write, test, and publish your own lab | [Author a lab](authoring.md) |
 | Find an option or command | [Command reference](commands.md) |
 | Resolve an installation or connection error | [Troubleshooting](troubleshooting.md) |
 

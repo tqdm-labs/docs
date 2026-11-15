@@ -7,7 +7,7 @@ extra_css = ["stylesheets/extra.css"]
 nav = [
   {"Overview" = "index.md"},
   {"Get started" = [{"Install tqctl" = "installation.md"}, {"Quickstart" = "quickstart.md"}]},
-  {"Guides" = [{"Sign in" = "authentication.md"}, {"Work with labs" = "labs.md"}, {"Connect to a machine" = "connections.md"}]},
+  {"Guides" = [{"Sign in" = "authentication.md"}, {"Work with labs" = "labs.md"}, {"Connect to a machine" = "connections.md"}, {"Author a lab" = "authoring.md"}]},
   {"Reference" = [{"Commands" = "commands.md"}, {"Downloads" = "downloads.md"}, {"Troubleshooting" = "troubleshooting.md"}]},
 ]
 

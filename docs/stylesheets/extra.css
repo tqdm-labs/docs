@@ -99,6 +99,11 @@
 @media (max-width: 59.984375em) {
   .docs-footer { max-width: none; }
 }
+/* the theme bleeds code blocks past the gutter on phones, which hides their side borders */
+@media screen and (max-width: 44.984375em) {
+  .md-content__inner > .highlight, .md-content__inner > pre { margin: 1em 0; }
+  .md-content__inner > .highlight > pre > code, .md-content__inner > pre > code { border-radius: 6px; }
+}
 @media (max-width: 600px) {
   .md-typeset .lead { font-size: 1rem; }
   .md-typeset figure.connection-diagram ol.connection-steps { grid-template-columns: 1fr; gap: 1.1rem; }
@@ -108,3 +113,8 @@
   .docs-footer { padding-bottom: 3.5rem; }
   .md-typeset h1 { font-size: 1.8rem; }
 }
+.md-typeset .org-badge { display: inline-flex; align-items: center; gap: .4em; margin: 0 0 1em; padding: .2em .7em; border: 1px solid var(--docs-rule); border-radius: 999px; background: var(--docs-surface); color: var(--docs-heading); font-size: .7rem; font-weight: 600; line-height: 1.6; }
+.md-typeset .org-badge svg { width: 1.1em; height: 1.1em; flex: none; color: var(--docs-link); }
+.md-typeset td .org-badge { margin: 0; padding: 0 .5em; font-size: .65rem; }
+.md-typeset .highlight > .filename { border: 1px solid var(--docs-code-rule); border-bottom: 0; border-radius: 6px 6px 0 0; }
+.md-typeset .highlight > .filename + pre > code { border-radius: 0 0 6px 6px; }
