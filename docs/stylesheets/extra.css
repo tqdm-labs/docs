@@ -99,10 +99,12 @@
 @media (max-width: 59.984375em) {
   .docs-footer { max-width: none; }
 }
-/* the theme bleeds code blocks past the gutter on phones, which hides their side borders */
+/* the theme bleeds code blocks and tab labels past the gutter on phones, which hides their side borders */
 @media screen and (max-width: 44.984375em) {
   .md-content__inner > .highlight, .md-content__inner > pre { margin: 1em 0; }
   .md-content__inner > .highlight > pre > code, .md-content__inner > pre > code { border-radius: 6px; }
+  [dir] .md-content__inner > .tabbed-set .tabbed-labels { max-width: 100%; margin: 0; padding-inline: 0; }
+  [dir] .md-content__inner > .tabbed-set .tabbed-labels ~ .tabbed-control { margin-inline: 0; padding-inline: 0; }
 }
 @media (max-width: 600px) {
   .md-typeset .lead { font-size: 1rem; }
