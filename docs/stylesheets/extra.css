@@ -18,6 +18,15 @@
   --docs-code-rule: #dae1ee;
   --docs-button: #1b2233;
   --docs-button-text: #fff;
+  --docs-cmd: #eef3fb;
+  --docs-cmd-head: #e3ebf7;
+  --docs-cmd-rule: #c9d6ea;
+  --docs-err: #a33a2e;
+  --docs-err-bg: #fbecea;
+  --docs-hl-key: #2f5a94;
+  --docs-hl-string: #1b6a6a;
+  --docs-hl-number: #94550f;
+  --docs-hl-flag: #7c3a8e;
   --docs-selection: #c2ccdd;
 }
 [data-md-color-scheme="slate"] {
@@ -37,6 +46,15 @@
   --docs-code-rule: #3c434d;
   --docs-button: #82e778;
   --docs-button-text: #1f2226;
+  --docs-cmd: #252c36;
+  --docs-cmd-head: #2c3644;
+  --docs-cmd-rule: #3d4a5c;
+  --docs-err: #ff9a8b;
+  --docs-err-bg: #3a2624;
+  --docs-hl-key: #aac9f0;
+  --docs-hl-string: #86d4cb;
+  --docs-hl-number: #e9b872;
+  --docs-hl-flag: #d4a8e8;
   --docs-selection: #3d536f;
 }
 [data-md-color-scheme] {
@@ -48,6 +66,15 @@
   --md-typeset-a-color: var(--docs-link);
   --md-code-bg-color: var(--docs-code);
   --md-code-fg-color: var(--docs-heading);
+  --md-code-hl-keyword-color: var(--docs-hl-key);
+  --md-code-hl-string-color: var(--docs-hl-string);
+  --md-code-hl-number-color: var(--docs-hl-number);
+  --md-code-hl-constant-color: var(--docs-hl-number);
+  --md-code-hl-variable-color: var(--docs-hl-flag);
+  --md-code-hl-special-color: var(--docs-hl-flag);
+  --md-code-hl-function-color: var(--docs-hl-flag);
+  --md-code-hl-comment-color: var(--docs-muted);
+  --md-code-hl-generic-color: var(--docs-muted);
 }
 .md-header { background: var(--docs-surface); color: var(--docs-heading); box-shadow: none; border-bottom: 1px solid var(--docs-rule); }
 .md-header__topic { font-weight: 650; }
@@ -124,5 +151,31 @@
 .md-typeset .org-badge { display: inline-flex; align-items: center; gap: .4em; margin: 0 0 1em; padding: .2em .7em; border: 1px solid var(--docs-rule); border-radius: 999px; background: var(--docs-surface); color: var(--docs-heading); font-size: .7rem; font-weight: 600; line-height: 1.6; }
 .md-typeset .org-badge svg { width: 1.1em; height: 1.1em; flex: none; color: var(--docs-link); }
 .md-typeset td .org-badge { margin: 0; padding: 0 .5em; font-size: .65rem; }
-.md-typeset .highlight > .filename { border: 1px solid var(--docs-code-rule); border-bottom: 0; border-radius: 6px 6px 0 0; }
-.md-typeset .highlight > .filename + pre > code { border-radius: 0 0 6px 6px; }
+/* a command block runs in the reader's terminal: pale blue, a head naming where, the copy button in the head */
+.md-typeset :is(.language-console, .language-sh, .language-powershell).highlight { margin: 1em 0; overflow: hidden; border: 1px solid var(--docs-cmd-rule); border-radius: 8px; position: relative; --md-code-bg-color: var(--docs-cmd); }
+.md-typeset :is(.language-console, .language-sh, .language-powershell).highlight::before { content: "Your terminal"; display: flex; align-items: center; height: 1.8rem; padding: 0 .8rem; background: var(--docs-cmd-head); border-bottom: 1px solid var(--docs-cmd-rule); color: var(--docs-link); font-size: .65rem; font-weight: 600; }
+.md-typeset .language-powershell.highlight::before { content: "PowerShell"; }
+.md-typeset .fail.highlight::after { content: "exit 1"; position: absolute; top: .45rem; left: 6rem; padding: 0 .35rem; border-radius: 4px; background: var(--docs-err-bg); color: var(--docs-err); font: 600 .6rem/1.5 var(--md-code-font); }
+.md-typeset :is(.language-console, .language-sh, .language-powershell) pre { margin: 0; }
+.md-typeset :is(.language-console, .language-sh, .language-powershell) pre > code { border: 0; border-radius: 0; }
+.md-typeset :is(.language-console, .language-sh, .language-powershell) .md-code__nav { top: -1.65rem; background: none; }
+.md-typeset .language-console .gp { color: var(--docs-muted); user-select: none; }
+.md-typeset .language-console .go { color: var(--docs-muted); }
+.md-typeset .fail .go { color: var(--docs-err); }
+/* a dashed rule between a command and what it prints, and air before the next command */
+.md-typeset .language-console code > span:has(> .gp) + span:has(> .go) { display: block; margin: .5em -1.25em 0; padding: .5em 1.25em 0; border-top: 1px dashed var(--docs-cmd-rule); }
+.md-typeset .language-console code > span:has(> .go) + span:has(> .gp) { display: block; margin-top: .8em; }
+/* the copy button reads innerText while this attribute is set, so it takes the commands only: no prompts, output or blank lines */
+.language-console [data-md-copying] .gp, .language-console [data-md-copying] > :is(span:has(> .go), span:not(:has(> :not(a)))) { display: none !important; }
+/* a file: paper, its path and language in the head, line numbers */
+.md-typeset .highlight:has(.filename) { overflow: hidden; border: 1px solid var(--docs-rule); border-radius: 8px; background: var(--docs-surface); --md-code-bg-color: var(--docs-surface); }
+.md-typeset .highlight:has(.filename) pre > code { border: 0; border-radius: 0; }
+.md-typeset .highlight .filename { display: flex; align-items: center; gap: .5rem; margin: 0; padding: .4rem .8rem; background: var(--docs-canvas); border-bottom: 1px solid var(--docs-rule); color: var(--docs-heading); font-size: .65rem; font-weight: 600; }
+.md-typeset .highlight .highlighttable { margin: 0; }
+.md-typeset .highlighttable th.filename { padding: 0; border: 0; }
+.md-typeset .highlighttable th.filename span.filename { border-bottom: 0; }
+.md-typeset .highlighttable tr:first-child { border-bottom: 1px solid var(--docs-rule); }
+.md-typeset :is(.language-markdown, .language-bash, .language-yaml) span.filename::after { padding: 0 .35rem; border-radius: 4px; background: var(--docs-code); color: var(--docs-muted); font: 500 .6rem/1.6 var(--md-code-font); }
+.md-typeset .language-markdown span.filename::after { content: "markdown"; }
+.md-typeset .language-bash span.filename::after { content: "bash"; }
+.md-typeset .language-yaml span.filename::after { content: "yaml"; }

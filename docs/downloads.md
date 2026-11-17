@@ -23,21 +23,21 @@ On macOS or Linux, run `uname -m`: `arm64` or `aarch64` means ARM64; `x86_64` me
 
 Download the binary and `SHA256SUMS` from the same release into an empty directory. For example, on an Apple Silicon Mac:
 
-```sh
-curl --proto '=https' --tlsv1.2 -fL -O https://docs.tqdm.sh/releases/v0.6.0/tqctl_v0.6.0_darwin_arm64
-curl --proto '=https' --tlsv1.2 -fL -O https://docs.tqdm.sh/releases/v0.6.0/SHA256SUMS
-shasum -a 256 tqctl_v0.6.0_darwin_arm64
+```console
+$ curl --proto '=https' --tlsv1.2 -fL -O https://docs.tqdm.sh/releases/v0.6.0/tqctl_v0.6.0_darwin_arm64
+$ curl --proto '=https' --tlsv1.2 -fL -O https://docs.tqdm.sh/releases/v0.6.0/SHA256SUMS
+$ shasum -a 256 tqctl_v0.6.0_darwin_arm64
 ```
 
 On Linux, use `sha256sum` instead of `shasum -a 256`. Compare the entire hash with the line for the **exact filename** in `SHA256SUMS`. If they differ, do not run the binary.
 
 After the hash matches, rename and install the binary:
 
-```sh
-mkdir -p "$HOME/.local/bin"
-install -m 755 tqctl_v0.6.0_darwin_arm64 "$HOME/.local/bin/tqctl"
-export PATH="$HOME/.local/bin:$PATH"
-tqctl --version
+```console
+$ mkdir -p "$HOME/.local/bin"
+$ install -m 755 tqctl_v0.6.0_darwin_arm64 "$HOME/.local/bin/tqctl"
+$ export PATH="$HOME/.local/bin:$PATH"
+$ tqctl --version
 ```
 
 For another platform, replace the filename in each command with the matching filename from the table.

@@ -4,9 +4,9 @@
 
 Check that the installation directory is on your PATH. On macOS, Linux, and WSL:
 
-```sh
-export PATH="$HOME/.local/bin:$PATH"
-tqctl --version
+```console
+$ export PATH="$HOME/.local/bin:$PATH"
+$ tqctl --version
 ```
 
 On native Windows, use the PowerShell PATH command in [installation](installation.md#__tabbed_1_2). Open a new terminal after changing your user Path.

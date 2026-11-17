@@ -16,7 +16,7 @@ variant = "modern"
 font = false
 favicon = "assets/brand/favicon.svg"
 custom_dir = "overrides"
-features = ["navigation.footer", "content.code.copy", "search.highlight"]
+features = ["navigation.expand", "navigation.footer", "content.code.copy", "search.highlight"]
 
 [project.theme.icon]
 logo = "tqdm/chevron"
@@ -46,6 +46,8 @@ toggle.name = "Switch to system preference"
 
 [project.markdown_extensions.pymdownx.highlight]
 anchor_linenums = true
+pygments_lang_class = true
+line_spans = "__span"
 
 [project.markdown_extensions.pymdownx.superfences]
 

@@ -2,9 +2,9 @@
 
 This reference matches `tqctl v0.6.0`. Use the help shipped with your installed version for the exact arguments and options:
 
-```sh
-tqctl --help
-tqctl <command> --help
+```console
+$ tqctl --help
+$ tqctl <command> --help
 ```
 
 | Command | Use it to |
@@ -32,15 +32,15 @@ tqctl <command> --help
 
 Use `-o json` when processing output in a script:
 
-```sh
-tqctl lab ls -o json
-tqctl session ls -o json
+```console
+$ tqctl lab ls -o json
+$ tqctl session ls -o json
 ```
 
 ## Version
 
-```sh
-tqctl --version
+```console
+$ tqctl --version
 ```
 
 Include your CLI version when reporting a problem. Do not include your token or configuration file.

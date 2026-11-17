@@ -2,32 +2,32 @@
 
 `tqctl` signs you in through your browser. Each installation has its own CLI session, which you can revoke without signing out your other devices.
 
-```sh
-tqctl auth login
+```console
+$ tqctl auth login
 ```
 
 Check the approval code, account, and organisation before you approve. The approval expires after ten minutes.
 
 ## Sign in without opening a browser
 
-```sh
-tqctl auth login --no-browser
+```console
+$ tqctl auth login --no-browser
 ```
 
 Open the printed URL in a browser where you can sign in. Approve only a request you started, and match its code to your terminal.
 
 ## Check your account
 
-```sh
-tqctl auth whoami
+```console
+$ tqctl auth whoami
 ```
 
 Your CLI remains bound to the organisation selected when you approved it. Switching organisation in the browser does not switch the CLI. Run `tqctl auth login` again to choose a different organisation.
 
 ## Sign out
 
-```sh
-tqctl auth logout
+```console
+$ tqctl auth logout
 ```
 
 This revokes the CLI session and removes its stored sign-in. It does not end your running lab sessions.
