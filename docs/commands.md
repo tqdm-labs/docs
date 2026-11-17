@@ -1,6 +1,6 @@
 # Command reference
 
-This reference matches `tqctl v0.6.0`. Use the help shipped with your installed version for the exact arguments and options:
+This reference follows the latest `tqctl` release. Use the help shipped with your installed version for the exact arguments and options:
 
 ```console
 $ tqctl --help

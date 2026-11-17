@@ -5,7 +5,7 @@
 Write a lab as a file, try it in a real session, and push it to your organisation, all from the terminal.
 {: .lead }
 
-This walkthrough builds one small lab, from an empty folder to a published lesson. Every command shows the real output of `tqctl v0.6.0`, so you can compare your terminal with the page as you go.
+This walkthrough builds one small lab, from an empty folder to a published lesson. Every command shows the real output of `tqctl`, so you can compare your terminal with the page as you go.
 
 The lab is called *Find what filled the disk*. A student gets one Linux machine whose disk is filling up: somewhere under `/var/log`, a service left a 400 MB debug log. The student has to find that file and delete it without deleting the service's live log beside it. The platform checks both conditions and marks the task done as soon as they hold.
 
@@ -24,16 +24,16 @@ Run every command on this page in your own terminal, in the folder where you kee
 `tqctl lab new` creates a folder named after the lab's slug, with a working example lab inside:
 
 ```console
-$ tqctl lab new tqdm-find-a-full-disk
-wrote tqdm-find-a-full-disk/lab.md and tqdm-find-a-full-disk/static/
-validate it: tqctl lab validate -f tqdm-find-a-full-disk/lab.md
+$ tqctl lab new find-a-full-disk
+wrote find-a-full-disk/lab.md and find-a-full-disk/static/
+validate it: tqctl lab validate -f find-a-full-disk/lab.md
 ```
 
 See what it made:
 
 ```console
-$ tree tqdm-find-a-full-disk
-tqdm-find-a-full-disk
+$ tree find-a-full-disk
+find-a-full-disk
 ├── lab.md
 └── static
 
@@ -45,16 +45,19 @@ A lab is a folder, and the folder is everything the platform needs:
 - `lab.md` holds the machines, the tasks and the text the student reads.
 - `static/` holds pictures for that text. Put a png, jpeg, gif or webp in it and link it from `lab.md` as `static/<name>.png`.
 
-The slug, `tqdm-find-a-full-disk`, is the lab's name inside your organisation. Pushing the same slug again makes a new version of the same lab, not a second lab.
+The slug, `find-a-full-disk`, is the lab's name on the platform. Pushing the same slug again makes a new version of the same lab, not a second lab.
+
+!!! warning "Lab names are unique across the whole platform"
+    A slug belongs to the first organisation that pushes it, not only inside your organisation. If another organisation already owns `find-a-full-disk`, your push is refused with `lab "find-a-full-disk" is owned by another organisation`. Give your lab a name of its own, such as `<org>-find-a-full-disk`, and use that name everywhere this page says `find-a-full-disk`.
 
 ## Read the scaffold
 
 Open `lab.md`. The scaffold is already a complete lab with one task, so read it before you change it:
 
-```markdown title="tqdm-find-a-full-disk/lab.md" linenums="1"
+```markdown title="find-a-full-disk/lab.md" linenums="1"
 ---
 kind: Lab
-slug: tqdm-find-a-full-disk
+slug: find-a-full-disk
 title: A new lab
 ttl: 1h
 
@@ -119,10 +122,10 @@ The two `---` lines split the file in two.
 
 Replace the whole of `lab.md` with this lab:
 
-```markdown title="tqdm-find-a-full-disk/lab.md" linenums="1" hl_lines="17 30 31"
+```markdown title="find-a-full-disk/lab.md" linenums="1" hl_lines="17 30 31"
 ---
 kind: Lab
-slug: tqdm-find-a-full-disk
+slug: find-a-full-disk
 title: "Find what filled the disk"
 description: "Track down the file eating a machine's disk and remove it without touching the live log."
 topics: [linux, storage]
@@ -190,7 +193,7 @@ The check is two lines, and each line is an assertion. The first line that fails
 The check expects a 400 MB file that does not exist yet. An init script creates it. An init script runs once per session, as root, after the machine boots and before the student gets it. Create one from the template:
 
 ```console
-$ cd tqdm-find-a-full-disk
+$ cd find-a-full-disk
 $ tqctl lab script new 10_fill_disk --machine station
 wrote scripts/init_10_fill_disk.sh
 fill in main, then validate the lab: tqctl lab validate -f lab.md
@@ -254,7 +257,7 @@ Validation runs the same checks as the platform, so a lab that passes here is ac
 
 ```console
 $ tqctl lab validate -f lab.md
-ok: tqdm-find-a-full-disk (1 machine(s), 1 task(s), ttl 30m0s)
+ok: find-a-full-disk (1 machine(s), 1 task(s), ttl 30m0s)
 overview: 110 bytes
 commands: 2
 init script: scripts/init_10_fill_disk.sh on station, timeout 60s
@@ -277,11 +280,11 @@ Push uploads the lab to your organisation without starting a session. Each push 
 
 ```console
 $ tqctl lab push -f lab.md
-lab tqdm-find-a-full-disk v1
+lab find-a-full-disk v1
 init script: scripts/init_10_fill_disk.sh on station, timeout 60s
 ```
 
-The lab is now a draft. Only your organisation sees it until you publish it.
+The lab is now a draft: your organisation's owners see it, and its members do not until you publish it.
 
 ## Try it in a session
 
@@ -289,9 +292,9 @@ Start a session from your local copy. The command uploads it as the next version
 
 ```console
 $ tqctl session create -f lab.md
-lab tqdm-find-a-full-disk v2
+lab find-a-full-disk v2
 session 1738d24a provisioning...
-session 1738d24a ready in 2.56s  (tqdm-find-a-full-disk, 1 machine, ends in 29m)
+session 1738d24a ready in 2.56s  (find-a-full-disk, 1 machine, ends in 29m)
   cockpit  <cockpit-link>
   student  <student-token>
   ssh      tqctl ssh 1738d24a
@@ -366,15 +369,17 @@ session 1738d24a tearing down
 
 ## Publish
 
-A pushed lab is a draft that only your organisation sees. When it is ready for students, put it in your catalog:
+A pushed lab is a draft for your organisation's owners. When it is ready for students, publish it to show it to your organisation's members. Nobody outside your organisation ever sees it:
 
 ```console
-$ tqctl lab publish tqdm-find-a-full-disk
+$ tqctl lab publish find-a-full-disk
 ```
 
-`tqctl lab unpublish tqdm-find-a-full-disk` takes it back out as a draft. Check your organisation's review process before you publish.
+`tqctl lab unpublish find-a-full-disk` takes it back out as a draft. Check your organisation's review process before you publish.
 
 ## Next steps
 
+- Every field a lab can use is in [The lab file](lab-file.md).
+- Updating, unpublishing and the rest of a lab's life are in [Build and publish a lab](publishing.md).
 - Use your own machine image: `tqctl image build` and `tqctl image push`, then name it as `image: <org>/<name>:<tag>`. See `tqctl image --help`.
 - Find every option in the [command reference](commands.md).

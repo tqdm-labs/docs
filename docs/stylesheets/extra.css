@@ -179,3 +179,4 @@
 .md-typeset .language-markdown span.filename::after { content: "markdown"; }
 .md-typeset .language-bash span.filename::after { content: "bash"; }
 .md-typeset .language-yaml span.filename::after { content: "yaml"; }
+.md-typeset td:first-child > code { white-space: nowrap; }

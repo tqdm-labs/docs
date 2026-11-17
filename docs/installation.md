@@ -63,8 +63,8 @@ Run the installer again to get the latest stable release. A failed download or c
 === "macOS / Linux / WSL"
 
     ```sh
-    sh install.sh                  # Latest stable version
-    sh install.sh --version v0.6.0 # A specific release
+    sh install.sh                     # Latest stable version
+    sh install.sh --version <version> # A specific release
 
     # Optional: choose a user-owned directory
     sh install.sh --install-dir "$HOME/.local/bin"
@@ -73,8 +73,8 @@ Run the installer again to get the latest stable release. A failed download or c
 === "Windows"
 
     ```powershell
-    pwsh -File ./install.ps1                 # Latest stable version
-    pwsh -File ./install.ps1 -Version v0.6.0 # A specific release
+    pwsh -File ./install.ps1                    # Latest stable version
+    pwsh -File ./install.ps1 -Version <version> # A specific release
 
     # Optional: choose a user-owned directory
     pwsh -File ./install.ps1 -InstallDir "$HOME\tools\bin"

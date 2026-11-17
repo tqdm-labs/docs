@@ -7,8 +7,8 @@ extra_css = ["stylesheets/extra.css"]
 nav = [
   {"Overview" = "index.md"},
   {"Getting started" = [{"Install tqctl" = "installation.md"}, {"Quickstart" = "quickstart.md"}]},
-  {"Guides" = [{"Sign in" = "authentication.md"}, {"Work with labs" = "labs.md"}, {"Connect to a machine" = "connections.md"}, {"Author a lab" = "authoring.md"}]},
-  {"Reference" = [{"Commands" = "commands.md"}, {"Downloads" = "downloads.md"}, {"Troubleshooting" = "troubleshooting.md"}]},
+  {"Guides" = [{"Sign in" = "authentication.md"}, {"Work with labs" = "labs.md"}, {"Connect to a machine" = "connections.md"}, {"Author a lab" = "authoring.md"}, {"Build and publish a lab" = "publishing.md"}]},
+  {"Reference" = [{"The lab file" = "lab-file.md"}, {"Commands" = "commands.md"}, {"Downloads" = "downloads.md"}, {"Troubleshooting" = "troubleshooting.md"}]},
 ]
 
 [project.theme]
