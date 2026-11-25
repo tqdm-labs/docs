@@ -73,7 +73,7 @@ Run once. It puts tqctl on your PATH and turns on tab completion in every new te
     grep -qs 'tqctl completion bash' ~/.bashrc || cat >> ~/.bashrc <<'EOF'
     # tqctl
     export PATH="$HOME/.local/bin:$PATH"
-    source <(tqctl completion bash)
+    eval "$(tqctl completion bash)"
     EOF
 
     # Load it in this terminal and check the version
@@ -81,7 +81,7 @@ Run once. It puts tqctl on your PATH and turns on tab completion in every new te
     tqctl --version
     ```
 
-    Completion in bash needs the `bash-completion` package and bash 4 or newer. The bash 3.2 that macOS ships skips the completion line; PATH still works.
+    Completion in bash needs the `bash-completion` package.
 
 === "PowerShell"
 
