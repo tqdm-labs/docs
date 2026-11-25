@@ -3,13 +3,13 @@ import re
 import unittest
 
 DOCS = Path(__file__).resolve().parents[1] / 'docs'
-VERSION = re.compile(r'\bv\d+\.\d+\.\d+\b')
+VERSIONED = re.compile(r'releases/v\d|tqctl_v\d')
 
 
 class VersionTests(unittest.TestCase):
-    def test_every_page_names_the_same_release(self):
-        found = {v for page in DOCS.glob('*.md') for v in VERSION.findall(page.read_text())}
-        self.assertEqual(len(found), 1, f'docs name more than one release: {sorted(found)}')
+    def test_no_link_or_file_name_carries_a_version(self):
+        for page in DOCS.glob('*.md'):
+            self.assertIsNone(VERSIONED.search(page.read_text()), f'{page.name} names a release')
 
 
 if __name__ == '__main__':
