@@ -30,6 +30,8 @@ uv run zensical build
 uv run python -m unittest discover -s tests
 ```
 
+The public binaries are built and placed by the release pipeline of the private repository. `releases/latest/` always serves the newest stable release. After publishing this site, copy `docs/install.sh` and `docs/install.ps1` to the downloads host by hand, because that host serves `/install.sh` and `/install.ps1` itself.
+
 CI also checks the shell and PowerShell installers and provides a downloadable site preview. Deployment is manual.
 
 Built with [Zensical](https://zensical.org). Fonts are self-hosted with their licenses in [docs/assets/fonts](docs/assets/fonts/).

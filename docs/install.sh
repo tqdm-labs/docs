@@ -71,4 +71,4 @@ chmod 755 "$work/$asset"
 [ ! -L "$destination" ] || fail 'destination became a symlink; installation stopped'
 [ ! -e "$destination" ] || [ -f "$destination" ] || fail 'destination is not a regular file'
 mv -f "$work/$asset" "$destination"
-printf 'Installed %s\nEnsure this directory is on your PATH: %s\nThen run: tqctl --version\n' "$destination" "$install_dir"
+printf 'Installed %s\nSet up your shell (PATH and tab completion): https://docs.tqdm.sh/installation/#set-up-your-shell\n' "$destination"

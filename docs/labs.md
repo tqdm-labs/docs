@@ -11,7 +11,7 @@ $ tqctl lab describe <lab-slug>
 
 ## Start or inspect a session
 
-To launch a published lab, use the tqdm.sh web interface and follow the lab's instructions. Then inspect your session from the CLI:
+To launch a published lab, run `tqctl start <lab>` or use the tqdm.sh web interface. Exams are started in the browser. Then inspect your session from the CLI:
 
 ```console
 $ tqctl session ls

@@ -72,6 +72,12 @@ esac
                 self.assertEqual((self.dest / 'tqctl').read_bytes(), self.payload)
                 self.assertTrue((self.dest / 'tqctl').stat().st_mode & 0o111)
 
+    def test_final_message_points_at_shell_setup(self):
+        result = self.run_install()
+        self.assertEqual(result.stdout.splitlines()[-2:], [
+            f'Installed {self.dest}/tqctl',
+            'Set up your shell (PATH and tab completion): https://docs.tqdm.sh/installation/#set-up-your-shell'])
+
     def test_invalid_latest_preserves_binary(self):
         self.dest.mkdir()
         (self.dest / 'tqctl').write_bytes(b'old')

@@ -23,7 +23,8 @@ function Get-TqctlFile($Uri, $OutFile) {
 function Assert($Condition, $Message) { if (-not $Condition) { throw $Message } }
 try {
     $dest = Join-Path $root 'directory with spaces'
-    Install-Tqctl -Version v0.4.8 -InstallDir $dest
+    $out = Install-Tqctl -Version v0.4.8 -InstallDir $dest
+    Assert ($out[-1] -ceq 'Set up your shell (PATH and tab completion): https://docs.tqdm.sh/installation/#set-up-your-shell') 'final message missing shell setup link'
     Assert ($script:latestRequests -eq 0) 'pinned version requested latest'
     $binary = Join-Path $dest 'tqctl.exe'
     Assert ((Get-FileHash $binary).Hash.ToLowerInvariant() -eq $hash) 'successful installation failed'

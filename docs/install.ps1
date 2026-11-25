@@ -66,8 +66,7 @@ function Install-Tqctl([string]$Version, [string]$InstallDir) {
         }
         [IO.File]::Move($binary, $destination, $true)
         Write-Output "Installed $destination"
-        Write-Output "Ensure this directory is on your user Path: $InstallDir"
-        Write-Output 'Then run: tqctl --version'
+        Write-Output 'Set up your shell (PATH and tab completion): https://docs.tqdm.sh/installation/#set-up-your-shell'
     } finally {
         Remove-Item -LiteralPath $work -Recurse -Force
     }

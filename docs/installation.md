@@ -19,13 +19,7 @@ Choose your system. Both installers verify SHA-256 before installing, without ad
 
     # Detect your system, verify SHA-256, install to ~/.local/bin
     sh install.sh
-
-    # Add to PATH for this terminal and check the version
-    export PATH="$HOME/.local/bin:$PATH"
-    tqctl --version
     ```
-
-    To keep PATH across terminals, add the export line to `~/.zshrc` or `~/.bashrc`.
 
 === "Windows"
 
@@ -37,13 +31,9 @@ Choose your system. Both installers verify SHA-256 before installing, without ad
 
     # Verify SHA-256 and install for your user
     pwsh -File ./install.ps1
-
-    # Add to PATH for this terminal and check the version
-    $env:Path = "$HOME\AppData\Local\tqctl\bin;$env:Path"
-    tqctl --version
     ```
 
-    For future terminals, add `%USERPROFILE%\AppData\Local\tqctl\bin` to your **user Path** in Windows Environment Variables. If scripts are restricted, use [manual installation](downloads.md#verify-on-windows) and follow your organisation's policy.
+    If scripts are restricted, use [manual installation](downloads.md#verify-on-windows) and follow your organisation's policy.
 
 === "Windows / WSL"
 
@@ -56,14 +46,69 @@ Choose your system. Both installers verify SHA-256 before installing, without ad
 
     Restart if prompted, open Ubuntu, and finish its user setup. Install `tqctl` inside Ubuntu using the Linux instructions. [WSL setup help](https://learn.microsoft.com/en-us/windows/wsl/install).
 
-## Update or pin a version
+## Set up your shell
 
-Run the installer again to get the latest stable release. A failed download or checksum check preserves your current installation.
+Run once. It puts tqctl on your PATH and turns on tab completion in every new terminal.
+
+=== "zsh"
+
+    ```sh
+    # Add PATH and completion to ~/.zshrc, once
+    grep -qs 'tqctl completion zsh' ~/.zshrc || cat >> ~/.zshrc <<'EOF'
+    # tqctl
+    export PATH="$HOME/.local/bin:$PATH"
+    autoload -U compinit && compinit
+    source <(tqctl completion zsh)
+    EOF
+
+    # Load it in this terminal and check the version
+    source ~/.zshrc
+    tqctl --version
+    ```
+
+=== "bash"
+
+    ```sh
+    # Add PATH and completion to ~/.bashrc, once
+    grep -qs 'tqctl completion bash' ~/.bashrc || cat >> ~/.bashrc <<'EOF'
+    # tqctl
+    export PATH="$HOME/.local/bin:$PATH"
+    source <(tqctl completion bash)
+    EOF
+
+    # Load it in this terminal and check the version
+    source ~/.bashrc
+    tqctl --version
+    ```
+
+    Completion in bash needs the `bash-completion` package and bash 4 or newer. The bash 3.2 that macOS ships skips the completion line; PATH still works.
+
+=== "PowerShell"
+
+    ```powershell
+    # Add tqctl to your user Path and completion to your profile, once
+    $bin = "$HOME\AppData\Local\tqctl\bin"
+    [Environment]::SetEnvironmentVariable('Path', "$bin;" + [Environment]::GetEnvironmentVariable('Path', 'User'), 'User')
+    Add-Content $PROFILE "`ntqctl completion powershell | Out-String | Invoke-Expression"
+
+    # Open a new terminal, then check the version
+    tqctl --version
+    ```
+
+## Update
+
+```sh
+tqctl update          # Install the latest stable release
+tqctl update --check  # Only say whether a newer one is out
+```
+
+tqctl also checks on every run and tells you at the end of a command when a newer release is out. Set `TQDM_NO_UPDATE=1` to turn that off.
+
+To pin a version, run the installer again with `--version` (`-Version` on Windows). A failed download or checksum check preserves your current installation.
 
 === "macOS / Linux / WSL"
 
     ```sh
-    sh install.sh                     # Latest stable version
     sh install.sh --version <version> # A specific release
 
     # Optional: choose a user-owned directory
@@ -73,7 +118,6 @@ Run the installer again to get the latest stable release. A failed download or c
 === "Windows"
 
     ```powershell
-    pwsh -File ./install.ps1                    # Latest stable version
     pwsh -File ./install.ps1 -Version <version> # A specific release
 
     # Optional: choose a user-owned directory
