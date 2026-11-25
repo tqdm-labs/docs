@@ -34,7 +34,7 @@ Every lab's full name starts with its organisation's name. `lab ls` leaves that 
 $ tqctl start watch-a-linux-service-recover
 session 3f9a1c2e provisioning...
 session 3f9a1c2e ready in 3.2s  (watch-a-linux-service-recover, 1 machine, ends in 30m)
-  cockpit  https://labs.tqdm.sh/t/9c1f6b2e.../
+  cockpit  https://labs.tqdm.sh/t/9c1f6b2e...
   ssh      tqctl ssh 3f9a1c2e
   tasks    0/2 passed  (tqctl task ls 3f9a1c2e)
 ```
