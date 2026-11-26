@@ -35,6 +35,10 @@ Start `tqctl auth login` again. Approvals expire after ten minutes. Match the ne
 
 Check that your session is still running and you selected the right machine. The service must be listening on the requested port. See [connection instructions](connections.md). For an exam, return to the browser.
 
+## A forwarded link does not open
+
+"Nothing is answering" means the app is not running yet, or it listens only on `127.0.0.1`. Start it listening on `0.0.0.0` and reload the page. "This link is private" means the link was opened in a browser that has not signed in as someone allowed to open it: select Sign in, or open the link from the Ports panel instead.
+
 ## Report a problem
 
 Include your operating system, CPU architecture, `tqctl --version`, the command you ran, and the error text. Remove tokens, personal information, and lab content you are not permitted to share. Use the support channel provided by your organisation.

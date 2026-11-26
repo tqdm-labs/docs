@@ -296,6 +296,8 @@ Each entry in a machine's `interfaces` has a `network` and an optional `address`
 
 The machine needs an interface on a network that is not `private`.
 
+Students see these ports in the lab page's Ports panel, marked `lab`. They can also forward other ports of a running machine there themselves, so a lab only needs `expose` for the ports it wants ready from the start. See [Open a port in your browser](connections.md#open-a-port-in-your-browser).
+
 ### Persistent disk
 
 `persist` gives a machine one disk that outlives its sessions:
